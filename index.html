@@ -10,18 +10,17 @@
     <script defer src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script defer src="main.js"></script>
-    <link rel="shortcut icon" href="IMG_20250419_180337173-01.jpg" type="image/x-icon"/>
-    <title>Love</title>
+    <title>Document</title>
 </head>
 <body>
           <div class="background">
 
-        <img src="IMG_20250419_180337173-01-02.jpeg" id="bg-img">
+        <img src="/IMG_20250419_180337173-01-02.jpeg" id="bg-img">
 
     </div>
     <audio id="background-music" loop>
       <source
-        src="Thudarum-Kanmanipoove ｜ Mohanlal, Jakes Bejoy, Shobana, M.GSreekumar, TharunMoorthy, MRenjith,.mp3"
+        src="/Thudarum-Kanmanipoove ｜ Mohanlal, Jakes Bejoy, Shobana, M.GSreekumar, TharunMoorthy, MRenjith,.wav"
         type="audio/mpeg" />
       Your browser does not support the audio element.
     </audio>
@@ -40,55 +39,141 @@
         <div class="swiper-wrapper">
           <div class="swiper-slide">
             <img
-              src="Screenshot_2025-04-18-09-22-30-720_cn.wps.xiaomi.abroad.lite-01-01.jpeg" />
+              src="/Screenshot_2025-04-18-09-22-30-720_cn.wps.xiaomi.abroad.lite-01-01.jpeg" />
             <p></p>
           </div>
           <div class="swiper-slide">
             <img
-              src="IMG-20250417-WA0053-01.jpeg" />
+              src="/IMG-20250417-WA0053-01.jpeg" />
             <p></p>
           </div>
           <div class="swiper-slide">
             <img
-              src="IMG-20250417-WA0052-01.jpeg" />
+              src="/IMG-20250417-WA0052-01.jpeg" />
             <p></p>
           </div>
           <div class="swiper-slide">
             <img
-              src="IMG-20250417-WA0048-02.jpeg" />
+              src="/IMG-20250417-WA0048-02.jpeg" />
             <p></p>
           </div>
           <div class="swiper-slide">
             <img
-              src="Screenshot_2025-04-18-09-22-49-889_cn.wps.xiaomi.abroad.lite-01.jpeg" />
+              src="/Screenshot_2025-04-18-09-22-49-889_cn.wps.xiaomi.abroad.lite-01.jpeg" />
             <p></p>
           </div>
           <div class="swiper-slide">
             <img
-              src="Screenshot_2025-04-18-09-23-03-020_cn.wps.xiaomi.abroad.lite-02.jpeg" />
+              src="/Screenshot_2025-04-18-09-23-03-020_cn.wps.xiaomi.abroad.lite-02.jpeg" />
             <p></p>
           </div>
           <div class="swiper-slide">
             <img
-              src="Screenshot_2025-04-18-09-24-03-679_cn.wps.xiaomi.abroad.lite-02.jpeg" />
+              src="/Screenshot_2025-04-18-09-24-03-679_cn.wps.xiaomi.abroad.lite-02.jpeg" />
             <p></p>
           </div>
           <div class="swiper-slide">
             <img
-              src="Screenshot_2025-04-18-09-24-40-261_cn.wps.xiaomi.abroad.lite-02.jpeg" />
+              src="/Screenshot_2025-04-18-09-24-40-261_cn.wps.xiaomi.abroad.lite-02.jpeg" />
             <p></p>
           </div>
           <div class="swiper-slide">
             <img
-              src="IMG-20250417-WA0014-01.jpeg" />
+              src="/IMG-20250417-WA0014-01.jpeg" />
             <p></p>
           </div>
         </div>
         <div class="swiper-pagination"></div>
       </div>
     </div>
-    <br>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/kcz-DuQyWJI?si=WW7Qs02lhL42K1Ks" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><br>
+    <br><center>
+    <div class="if">
+      <iframe width="390" height="220" src="https://www.youtube.com/embed/kcz-DuQyWJI?si=WW7Qs02lhL42K1Ks" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin"allowfullscreen></iframe>
+      <iframe width="390" height="220" src="https://www.youtube.com/embed/kcz-DuQyWJI?si=WW7Qs02lhL42K1Ks" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+</div>
+
+  
+</object>
+    </div>
+    </center>
+    <br>
+<div class="pdf-container">
+  <canvas id="pdf-canvas"></canvas>
+  <div class="pdf-controls">
+    <div class="pdf-buttons">
+      <button id="prev-page">Prev</button>
+      <button id="next-page">Next</button>
+    </div>
+    <input type="range" id="page-slider" min="1" step="1">
+    <div id="page-num-display">
+      Page <span id="page-num">1</span> / <span id="page-count">?</span>
+    </div>
+  </div>
+</div>
   </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+<script>
+  const url = '/AthulyaSreejith.pdf'; // Replace with your actual PDF path
+
+  let pdfDoc = null;
+  let pageNum = 1;
+
+  const canvas = document.getElementById('pdf-canvas');
+  const ctx = canvas.getContext('2d');
+  const pageNumSpan = document.getElementById('page-num');
+  const pageCountSpan = document.getElementById('page-count');
+  const pageSlider = document.getElementById('page-slider');
+
+  const renderPage = (num) => {
+    pdfDoc.getPage(num).then((page) => {
+      const viewport = page.getViewport({ scale: 1.5 });
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+
+      const renderContext = {
+        canvasContext: ctx,
+        viewport: viewport,
+      };
+      page.render(renderContext);
+
+      pageNumSpan.textContent = num;
+      pageSlider.value = num;
+    });
+  };
+
+  const queueRenderPage = (num) => {
+    if (num < 1 || num > pdfDoc.numPages) return;
+    pageNum = num;
+    renderPage(pageNum);
+  };
+
+  pdfjsLib.getDocument(url).promise.then((pdf) => {
+    pdfDoc = pdf;
+    pageCountSpan.textContent = pdf.numPages;
+    pageSlider.max = pdf.numPages;
+
+    // Initial render
+    renderPage(pageNum);
+  }).catch((err) => {
+    alert("Failed to load PDF: " + err.message);
+  });
+
+  // Slider event
+  pageSlider.addEventListener('input', (e) => {
+    queueRenderPage(parseInt(e.target.value));
+  });
+
+  // Previous button
+  document.getElementById('prev-page').addEventListener('click', () => {
+    if (pageNum <= 1) return;
+    queueRenderPage(pageNum - 1);
+  });
+
+  // Next button
+  document.getElementById('next-page').addEventListener('click', () => {
+    if (pageNum >= pdfDoc.numPages) return;
+    queueRenderPage(pageNum + 1);
+  });
+</script>
 </html>
